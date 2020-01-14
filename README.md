@@ -8,6 +8,8 @@ Documents: This folder contains the most updated drafts of the reports (Concept 
 
 Presentations: This folder contains all presentations which were given for this project in the Fall 2019 and Spring 2020 semesters.
 
-Updates: This folder contains the weekly updates for the project in the Spring 2020 semester. 
+Code: This folder contains the MATLAB code which was developed for this project. 
+
+Updates: This folder contains the weekly updates for this project in the Spring 2020 semester. 
 
 
