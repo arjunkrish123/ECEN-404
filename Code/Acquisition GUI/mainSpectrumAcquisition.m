@@ -1,4 +1,4 @@
-% Last updated: November 20, 2019
+% Last updated: February 26, 2020
 
 % main driver for excitation monochromator (set and rotate grating) and
 % emission monochromator (set and read CCD)
@@ -6,6 +6,9 @@
 % clear all
 
 clear
+
+%% GUI global variables
+global AcquisitionGUI;
 
 %% Excitation Monochromator global variables
 
@@ -34,7 +37,8 @@ global endAcquisition; global folderPath; global saveSpectrum; global spectraWri
 
 % calibration (polynomial fitting)
 global isCalibrated; global calibratedPixels; global calibratedWavelengths;
-global polyFit;
+global polyFit; global calibratedPixelsRaman; global calibratedWavelengthsRaman;
+global polyFitRaman;
 
 % for taking spectra continuously
 global isContinuous;
@@ -76,10 +80,14 @@ XLimLow = 0; XLimUpp = 0; YLimLow = 0; YLimUpp = 0;
 MultipleSpectra = 0; PlottedSpectra = []; PlottedSpectraStrs = {}; 
 endAcquisition = 0; folderPath = ''; saveSpectrum = 0; spectraWritten = 0;
 
-isCalibrated = 0; 
+isCalibrated = 0;
 calibratedPixels = [351 506 631 847 1560];                      % by default              
 calibratedWavelengths = [365 405 436 487 651];                  % by default
 polyFit = polyfit(calibratedPixels,calibratedWavelengths,3);    % by default
+calibratedPixelsRaman = [1040 1165 1199 1229 1258 1503 1545];   % by default              
+calibratedWavelengthsRaman = [532 558.1451481 564.8918852 570.7266598 ...
+    576.5485704 623.0058951 630.0291097];             % by default
+polyFitRaman = polyfit(calibratedPixelsRaman,calibratedWavelengthsRaman,3);    % by default
 
 isContinuous = 0;
 
@@ -87,6 +95,6 @@ BackgroundSpectrum = []; backSub = 0;
 
 BAR = []; TAG = []; WARNINGS = 0;
 
-% initialize GUIs
+%% initialize GUIs
 
-SpectrumAcquisition_App
+AcquisitionGUI = SpectrumAcquisition_App;
